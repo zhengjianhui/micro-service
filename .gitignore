@@ -28,3 +28,6 @@ nbdist/
 .nb-gradle/
 
 microservice.iml
+message-thrift-python-service/message-thrift-python-service.iml
+
+venv
