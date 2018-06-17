@@ -29,5 +29,5 @@ nbdist/
 
 microservice.iml
 message-thrift-python-service/message-thrift-python-service.iml
-
+message-thrift-service-api/message-thrift-service-api.iml
 venv
