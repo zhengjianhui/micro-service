@@ -49,7 +49,7 @@ if __name__ == "__main__":
     processor = MessageService.Processor(handler)
 
     # 监听本地端口
-    transport = TSocket.TServerSocket("localhost", "9090")
+    transport = TSocket.TServerSocket("127.0.0.1", "9090")
     # 传输方式, 按帧传输
     tfactory = TTransport.TFramedTransportFactory()
     # 传输协议 二进制传输

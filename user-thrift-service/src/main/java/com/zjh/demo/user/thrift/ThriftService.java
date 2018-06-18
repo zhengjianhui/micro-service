@@ -51,6 +51,7 @@ public class ThriftService {
 
         // 开始监听
         TServer tServer = new TNonblockingServer(args);
+        tServer.serve();
 
     }
 }

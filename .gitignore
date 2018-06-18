@@ -31,4 +31,5 @@ microservice.iml
 message-thrift-python-service/message-thrift-python-service.iml
 message-thrift-service-api/message-thrift-service-api.iml
 user-thrift-service-api/user-thrift-service-api.iml
+user-edge-service/user-edge-service.iml
 venv

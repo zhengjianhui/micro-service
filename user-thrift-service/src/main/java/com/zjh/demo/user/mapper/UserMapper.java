@@ -20,9 +20,8 @@ public interface UserMapper {
     @Select("select * from pe_user where username = #{username}")
     UserInfo getUserByUsername(@Param("username") String username);
 
-
-    @Insert("insert into pe_user(username, password, real_name, mobile, email) values" +
-            "(#{u.username},#{u.password},#{u.real_name},#{u.mobile},#{u.email})")
+    @Insert("insert into pe_user (username, password, real_name, mobile, email)" +
+            "values(#{u.username},#{u.password},#{u.realName},#{u.mobile},#{u.email})")
     void registerUser(@Param("u") UserInfo userInfo);
 
 
