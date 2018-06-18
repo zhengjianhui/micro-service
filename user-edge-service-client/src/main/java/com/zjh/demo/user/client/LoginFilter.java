@@ -61,11 +61,8 @@ public class LoginFilter implements Filter {
             userDTO = getUser(token);
         }
 
-        if(userDTO == null) {
-            userDTO = cache.getIfPresent(token);
-            if(userDTO == null) {
-                response1.sendRedirect("http://127.0.0.1:8082/login");
-            }
+        if (userDTO == null) {
+            response1.sendRedirect("http://127.0.0.1:8082/login");
             return;
         }
 
@@ -77,6 +74,11 @@ public class LoginFilter implements Filter {
     }
 
     public UserDTO getUser(String token) {
+        UserDTO userDTO = cache.getIfPresent(token);
+        if(userDTO != null) {
+            return userDTO;
+        }
+
         String url = "http://127.0.0.1:8082/authentication";
         DefaultHttpClient httpClient = new DefaultHttpClient();
         HttpGet httpGet = new HttpGet(url);
@@ -96,13 +98,15 @@ public class LoginFilter implements Filter {
                 sb.append(new String(temp, 0, len));
             }
 
-            UserDTO userDTO = JSON.parseObject(sb.toString(), UserDTO.class);
+            userDTO = JSON.parseObject(sb.toString(), UserDTO.class);
+            cache.put(token, userDTO);
+            
             return userDTO;
 
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if(inputStream != null) {
+            if (inputStream != null) {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
