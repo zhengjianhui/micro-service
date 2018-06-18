@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author zhengjianhui on 6/18/18
  */
-public class LoginFilter implements Filter {
+public abstract class LoginFilter implements Filter {
 
     private static Cache<String, UserDTO> cache
             = CacheBuilder.newBuilder().maximumSize(10000).expireAfterAccess(3, TimeUnit.MINUTES).build();
@@ -65,9 +65,11 @@ public class LoginFilter implements Filter {
             response1.sendRedirect("http://127.0.0.1:8082/login");
             return;
         }
-
+        login(request1, response1, userDTO);
         chain.doFilter(request, response);
     }
+
+    protected abstract void login(HttpServletRequest request, HttpServletResponse response, UserDTO userDTO);
 
     public void destroy() {
 
@@ -100,7 +102,7 @@ public class LoginFilter implements Filter {
 
             userDTO = JSON.parseObject(sb.toString(), UserDTO.class);
             cache.put(token, userDTO);
-            
+
             return userDTO;
 
         } catch (IOException e) {
