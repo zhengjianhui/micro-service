@@ -1,4 +1,4 @@
-FROM python-base:latest
+FROM hub.zjh.com:8888/micro-service/python-base:latest
 MAINTAINER zjh
 
 # 增加环境变量

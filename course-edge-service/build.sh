@@ -3,4 +3,6 @@
 mvn clean
 mvn package
 
-docker build -t course-edge-service .
+docker build -t hub.zjh.com:8888/micro-service/course-edge-service .
+
+docker push hub.zjh.com:8888/micro-service/course-edge-service:latest
